@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function ImageSlider({ images }) {
+	const [index, setIndex] = useState(0);
+
+	const slideLeft = () => {
+		const nextIndex = index - 1;
+		if (nextIndex < 0) {
+			setIndex(images.length - 1);
+		} else {
+			setIndex(nextIndex);
+		}
+	};
+
+	const slideRight = () => {
+		setIndex((index + 1) % images.length);
+	};
+
 	return (
 		images.length > 0 && (
-			<div>
-				<button>{'<'}</button>
-				<img src={images[0]} />
-				<button>{'>'}</button>
+			<div className="image-slider">
+				<button onClick={slideLeft}>{'<'}</button>
+				<img src={images[index]} />
+				<button onClick={slideRight}>{'>'}</button>
 			</div>
 		)
 	);
