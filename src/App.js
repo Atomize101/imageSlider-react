@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import ImageSlider from './ImageSlider';
 
 //https://pixabay.com/api/
 
@@ -22,7 +23,7 @@ export default function App() {
 				<input onChange={(e) => setQuery(e.target.value)} />
 				<button onClick={runQuery}>Search</button>
 			</div>
-			{images.length > 0 && <img src={images[0]} />}
+			<ImageSlider images={images} />
 		</div>
 	);
 }
